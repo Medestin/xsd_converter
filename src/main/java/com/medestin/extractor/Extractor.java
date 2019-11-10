@@ -1,4 +1,4 @@
-package com.medestin.converter.extractor;
+package com.medestin.extractor;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;

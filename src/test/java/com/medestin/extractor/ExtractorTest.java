@@ -1,4 +1,4 @@
-package com.medestin.converter.extractor;
+package com.medestin.extractor;
 
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
