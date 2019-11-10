@@ -1,8 +1,12 @@
 package com.medestin.converter.extractor;
 
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,4 +36,16 @@ class ExtractorTest {
         assertThrows(NullPointerException.class, () -> extractor.loadFile(filename));
     }
 
+    @Test
+    void extractDocument_returnsDocument_properFile() throws IOException, SAXException, ParserConfigurationException {
+        // Given
+        Extractor extractor = new Extractor();
+        File file = new File(ClassLoader.getSystemResource("schema.xsd").getFile());
+
+        // When
+        Document doc = extractor.extractDocument(file);
+
+        // Then
+        assertNotNull(doc);
+    }
 }
