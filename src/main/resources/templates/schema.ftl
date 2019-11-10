@@ -43,3 +43,56 @@ simpleTypes {
     }
 
 }
+AUTOMATE IT ALL:
+{
+<#recurse doc["xsd:schema"]>
+
+    <#macro "xsd:complexType">
+    ${.node?node_name?keep_after(":")} : {
+    <#list .node.@@ as att>
+            ${att?node_name} : ${att}
+    </#list>
+        <#recurse>
+    }
+    </#macro>
+
+    <#macro "xsd:simpleType">
+    ${.node?node_name?keep_after(":")} : {
+    <#list .node.@@ as att>
+            ${att?node_name} : ${att}
+    </#list>
+        <#recurse>
+    }
+    </#macro>
+
+    <#macro "xsd:sequence">
+    sequence : {
+        <#recurse>
+    }
+    </#macro>
+
+    <#macro "xsd:element">
+    ${.node?node_name?keep_after(":")} : {
+    <#list .node.@@ as att>
+                ${att?node_name} : ${att}
+    </#list>
+    }
+    </#macro>
+
+    <#macro "xsd:attribute">
+    ${.node?node_name?keep_after(":")} : {
+    <#list .node.@@ as att>
+            ${att?node_name} : ${att}
+    </#list>
+    }
+    </#macro>
+
+    <#macro @element>
+    ${.node?node_name?keep_after(":")} : {
+    <#list .node.@@ as att>
+            ${att?node_name} : ${att}
+    </#list>
+        <#recurse>
+    }
+    </#macro>
+}
