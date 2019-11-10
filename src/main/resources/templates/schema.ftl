@@ -29,11 +29,7 @@ simpleTypes {
                     restrictions {
                         <#list simple["xsd:restriction"]?children as res >
                             <#if res?node_name != '@text'>
-                                pattern : ${res.@value}
-                            <#elseif res?node_name == 'xsd:minLength' >
-                                minLength : ${res.@value}
-                            <#elseif res?node_name == 'xsd:maxLength' >
-                                maxLength : ${res.@value}
+                                ${res?node_name?replace("xsd:", "")} : ${res.@value}
                             </#if>
                         </#list>
                     }
